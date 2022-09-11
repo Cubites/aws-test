@@ -7,7 +7,7 @@ app.set('port', 4000);
 dotenv.config();
 
 app.use(cors({
-    origin: `${process.env.AWS_IP}`
+    origin: '*'
 }));
 
 app.post('/api/main', (req, res) => {
