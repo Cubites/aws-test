@@ -1,70 +1,65 @@
-# Getting Started with Create React App
+## 1. nginx.conf 세팅
+```bash
+# 다음 두줄 추가
+include /etc/nginx/conf.d/*.conf;
+include /etc/nginx/sites-enabled/*.conf;
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+// 아래처럼 server { } 부분 주석처리
+# server {
+#    listen       80 default_server;
+#    listen       [::]:80 default_server;
+#    server_name  _;
+#    root         /usr/share/nginx/html;
+    # Load configuration files for the default server block.
+#    include /etc/nginx/default.d/*.conf;
+#    location / {
+#    }
+#    error_page 404 /404.html;
+#        location = /40x.html {
+#    }
+#    error_page 500 502 503 504 /50x.html;
+#        location = /50x.html {
+#    }
+# }
+```
 
-## Available Scripts
+## 2. sites-available, sites-enabled 설정
+* sties-available, sites-enabled 폴더 생성
+```bash
+$ sudo mkdir /etc/nginx/sites-available
+$ sudo mkdir /etc/nginx/sites-enabled
+```
+* sites-available 폴더에 .conf 파일 생성
+```bash
+$ sudo vi /etc/nginx/sites-available/원하는파일명.conf
+```
+* .conf 파일에 아래 내용 추가
+```bash
+server {
+  listen 80;
+  location / {
+    # root /home/ec2-user/(react build 폴더 경로) 
+    root /home/ec2-user/#######/#######/build;
+    index index.html index.htm;
+    try_files $uri $uri/ /index.html;
+  }
+}
+```
 
-In the project directory, you can run:
+## 3. 실행
+* react 실행
+```bash
+$ sudo systemctl start nginx
+# stop(정지), restart(재시작)
+```
+* node 실행
+```bash
+$ pm2 start (node 서버 파일이름)
+# stop(정지)
+```
 
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## etc
+* nginx 상태 확인
+```bash
+$ sudo systemctl status nginx
+```
