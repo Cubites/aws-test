@@ -6,18 +6,9 @@ const app = express();
 app.set('port', 4000);
 dotenv.config();
 
-const whitelist = [`http://${process.env.AWS_IP}:80`, `http://${process.env.AWS_IP}:3000`];
- 
-const corsOptions = {
-  origin: function (origin, callback) { 
-    if (whitelist.indexOf(origin) !== -1) { // 만일 whitelist 배열에 origin인자가 있을 경우
-      callback(null, true); // cors 허용
-    } else {
-      callback(new Error("Not Allowed Origin!")); // cors 비허용
-    }
-  },
-};
-app.use(cors(corsOptions));
+app.use(cors({
+    origin: `${process.env.AWS_IP}`
+}));
 
 app.post('/api/main', (req, res) => {
     res.status(200).send({success: true, contents: 'this is Main page'});
