@@ -45,6 +45,16 @@ server {
   }
 }
 ```
+* .conf 설정 테스트
+```bash
+$ sudo ln -s /etc/nginx/sites-available/#######.conf /etc/nginx/sites-enabled/#######.conf
+$ sudo nginx -t
+```
+* 다음 두줄이 표시되면 이상이 없다는 의미
+```bash
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+```
 
 ## 3. 실행
 * react 실행
