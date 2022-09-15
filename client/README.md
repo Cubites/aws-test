@@ -73,3 +73,17 @@ $ pm2 start (node 서버 파일이름)
 ```bash
 $ sudo systemctl status nginx
 ```
+
+## 에러
+### Mixed Content 에러
+* 발생 상황 
+  <br>: https로 접속 후, react에서 http로 axios 요청 후 발생
+* 원인
+  <br>: HTTPS로 로드된 페이지에서 HTTP를 통해 리소스를 로드를 거부하기 때문
+
+### ERR_SSL_PROTOCOL_ERROR 에러
+* 발생 상황
+  * 경우 1. https로 접속 후, react에서 https로 axios 요청 후 발생
+  * 경우 2. http로 접속 후, react에서 https로 axios 요청 후 발생
+* 시도 방법
+  * nginx 의 .conf 파일에서 node 경로를 https로 수정 > 동일한 에러 발생 
