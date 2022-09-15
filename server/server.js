@@ -17,6 +17,11 @@ app.use(cors({
 // });
 
 app.post('/api/main', (req, res) => {
+    console.log('/api/main 신호 확인');
+    console.log('req.secure : ', req.secure);
+    console.log(`req.get('X-Forwarded-Proto') :`, req.get('X-Forwarded-Proto'));
+    console.log(`req.get('Host') : `, req.get('Host'));
+    console.log('req.url : ', req.url);
     res.status(200).send({success: true, contents: 'this is Main page'});
 })
 
