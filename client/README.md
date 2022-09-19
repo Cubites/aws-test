@@ -85,5 +85,8 @@ $ sudo systemctl status nginx
 * 발생 상황
   * 경우 1. https로 접속 후, react에서 https로 axios 요청 후 발생
   * 경우 2. http로 접속 후, react에서 https로 axios 요청 후 발생
+* 파악한 현재 상태
+  * SSL_PROTOCOL_ERROR가 발생할 때 PM2 monit로 서버 로그를 확인한 결과 아무런 로그도 발생하지 않음
+    <br>> 요청이 서버까지 도달하지 못함을 확인
 * 시도 방법
   * nginx 의 .conf 파일에서 node 경로를 https로 수정 > 동일한 에러 발생 
