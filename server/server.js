@@ -4,7 +4,7 @@ const https = require('https');
 // const app = require('./app');
 
 let privateKey = fs.readFileSync("/etc/letsencrypt/live/commenter.link/privkey.pem");
-let certificate = fs.readFileStync("/etc/letsencrypt/live/commenter.link/cert.pen");
+let certificate = fs.readFileSync("/etc/letsencrypt/live/commenter.link/cert.pen");
 let ca = fs.readFileSync("/etc/letsencrypt/live/commenter.link/chain.pen");
 let credentials = { key: privateKey, cert: certificate, ca: ca };
 
