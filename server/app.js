@@ -33,4 +33,14 @@ app.post('/api/second', (req, res) => {
     res.status(200).send({success: true, contents: 'This is Second page'});
 });
 
+// if(req.get('X-Forwarded-Proto') == 'https'){
+//     https.createServer(credentials, app).listen(app.get('port'), () => {
+//         console.log('https에서 서버가 실행되었습니다.');
+//     })
+// }else{
+//     app.listen(app.get('port'), () => {
+//         console.log(`http에서 서버가 실행되었습니다.`);
+//     });
+// }
+
 export default app;
