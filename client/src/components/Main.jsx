@@ -17,8 +17,9 @@ const Main = () => {
     navigate('/first');
   }
 
-  const RequestServer = async () => {
+  const RequestServer = async (e) => {
     // const url = process.env.REACT_APP_NODE_ENV === 'production' ? `https://${process.env.REACT_APP_AWS_IP}:4000/api/main` : '/api/main';
+    e.preventDefault();
     const url = `https://${process.env.REACT_APP_DNS_NAME}:4000/api/main`;
     console.log('url : ', url);
     try{
