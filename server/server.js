@@ -26,10 +26,12 @@ app.post('/api/main', (req, res) => {
 })
 
 app.post('/api/first', (req, res) => {
+    console.log('req.url : ', req.url);
     res.status(200).send({success: true, contents: 'This is First page'});
 });
 
 app.post('/api/second', (req, res) => {
+    console.log('req.url : ', req.url);
     res.status(200).send({success: true, contents: 'This is Second page'});
 });
 
