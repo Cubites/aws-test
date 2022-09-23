@@ -8,12 +8,18 @@ let certificate = fs.readFileStync("/etc/letsencrypt/live/commenter.link/cert.pe
 let ca = fs.readFileSync("/etc/letsencrypt/live/commenter.link/chain.pen");
 let credentials = { key: privateKey, cert: certificate, ca: ca };
 
-if(req.get('X-Forwarded-Proto') == 'https'){
-    https.createServer(credentials, app).listen(app.get('port'), () => {
-        console.log('https에서 서버가 실행되었습니다.');
-    })
-}else{
-    app.listen(app.get('port'), () => {
-        console.log(`http에서 서버가 실행되었습니다.`);
-    });
-}
+// if(req.get('X-Forwarded-Proto') == 'https'){
+//     https.createServer(credentials, app).listen(app.get('port'), () => {
+//         console.log('https에서 서버가 실행되었습니다.');
+//     })
+// }else{
+//     app.listen(app.get('port'), () => {
+//         console.log(`http에서 서버가 실행되었습니다.`);
+//     });
+// }
+
+console.log(`req.get('X-Forwarded-Proto') : `, req.get('X-Forwarded-Proto'));
+
+app.listen(app.get('port'), () => {
+    console.log(`http에서 서버가 실행되었습니다.`);
+});
