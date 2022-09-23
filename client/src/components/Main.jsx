@@ -19,7 +19,7 @@ const Main = () => {
 
   const RequestServer = async () => {
     // const url = process.env.REACT_APP_NODE_ENV === 'production' ? `https://${process.env.REACT_APP_AWS_IP}:4000/api/main` : '/api/main';
-    const url = `https://${process.env.REACT_APP_AWS_IP}:4000/api/main`;
+    const url = `https://${process.env.REACT_APP_DNS_NAME}:4000/api/main`;
     console.log('url : ', url);
     try{
       const answer = await axios.post(url);
