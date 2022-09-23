@@ -18,7 +18,7 @@ const FirstTest = () => {
   }
 
   const RequestServer = async () => {
-    const url = process.env.REACT_APP_NODE_ENV === 'production' ? `https://${process.env.REACT_APP_AWS_IP}:4000/api/first` : '/api/first';
+    const url = process.env.REACT_APP_NODE_ENV === 'production' ? `http://${process.env.REACT_APP_AWS_IP}:4000/api/first` : '/api/first';
     try{
       const answer = await axios.post(url);
       setResponseFirst(answer.data.contents);
