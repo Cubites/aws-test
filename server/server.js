@@ -53,10 +53,10 @@ app.post('/api/second', (req, res) => {
 //     });
 // }
 
-// app.listen(app.get('port'), () => {
-//     console.log(`http에서 서버가 실행되었습니다.`);
-// });
+app.listen(app.get('port'), () => {
+    console.log(`http에서 서버가 실행되었습니다.`);
+});
 
-https.createServer(credentials, app).listen(app.get('port'), () => {
-    console.log('https에서 서버가 실행되었습니다.');
-})
+// https.createServer(credentials, app).listen(app.get('port'), () => {
+//     console.log('https에서 서버가 실행되었습니다.');
+// });
