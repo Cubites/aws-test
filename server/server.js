@@ -1,10 +1,12 @@
 const fs = require('fs');
 const https = require('https');
+const http = require('http');
 
 let privateKey = fs.readFileSync("/etc/letsencrypt/live/commenter.link/privkey.pem");
 let certificate = fs.readFileSync("/etc/letsencrypt/live/commenter.link/cert.pem");
 let ca = fs.readFileSync("/etc/letsencrypt/live/commenter.link/chain.pem");
-let credentials = { key: privateKey, cert: certificate, ca: ca };
+// let credentials = { key: privateKey, cert: certificate, ca: ca };
+let credentials = { key: privateKey, cert: certificate };
 
 console.log(credentials);
 
@@ -37,10 +39,10 @@ app.post('/api/second', (req, res) => {
     res.status(200).send({success: true, contents: 'This is Second page'});
 });
 
-app.listen(app.get('port'), () => {
-    console.log(`http에서 서버가 실행되었습니다.`);
-});
-
-// https.createServer(credentials, app).listen(app.get('port'), () => {
-//     console.log('https에서 서버가 실행되었습니다.');
+// app.listen(app.get('port'), () => {
+//     console.log(`http에서 서버가 실행되었습니다.`);
 // });
+
+https.createServer(credentials, app).listen(app.get('port'), () => {
+    console.log('https에서 서버가 실행되었습니다.');
+});
