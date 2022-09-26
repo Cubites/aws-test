@@ -6,6 +6,8 @@ let certificate = fs.readFileSync("/etc/letsencrypt/live/commenter.link/cert.pem
 let ca = fs.readFileSync("/etc/letsencrypt/live/commenter.link/chain.pem");
 let credentials = { key: privateKey, cert: certificate, ca: ca };
 
+console.log(credentials);
+
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
