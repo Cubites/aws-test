@@ -22,6 +22,7 @@ const Main = () => {
     e.preventDefault();
     const url = `https://${process.env.REACT_APP_DNS_NAME}:4000/api/main`;
     console.log('url : ', url);
+    console.log('https 통신');
     try{
       const answer = await axios.post(url);
       setResponseMain(answer.data.contents);
