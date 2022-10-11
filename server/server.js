@@ -20,7 +20,12 @@ dotenv.config();
 
 // app.use(cors({ origin: '*' }));
 let corsOptions = {
-    origin: 'http://54.180.18.215'
+    origin: [
+        'http://54.180.18.215',
+        'http://commenter.link',
+        'https://54.180.18.215',
+        'https://commenter.link'
+    ]
 }
 
 app.post('/api/main', cors(corsOptions), (req, res) => {
