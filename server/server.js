@@ -18,9 +18,12 @@ const app = express();
 app.set('port', 4000);
 dotenv.config();
 
-app.use(cors({ origin: '*' }));
+// app.use(cors({ origin: '*' }));
+let corsOptions = {
+    origin: 'http://54.180.18.215'
+}
 
-app.post('/api/main', (req, res) => {
+app.post('/api/main', cors(corsOptions), (req, res) => {
     console.log('/api/main 신호 확인');
     console.log('req.secure : ', req.secure);
     console.log(`req.get('X-Forwarded-Proto') :`, req.get('X-Forwarded-Proto'));
@@ -29,12 +32,12 @@ app.post('/api/main', (req, res) => {
     res.status(200).send({success: true, contents: 'this is HTTP(DNS) page'});
 });
 
-app.post('/api/http', (req, res) => {
+app.post('/api/http', cors(corsOptions), (req, res) => {
     console.log('req.url : ', req.url);
     res.status(200).send({success: true, contents: 'This is HTTP(IP) page'});
 });
 
-app.post('/api/https', (req, res) => {
+app.post('/api/https', cors(corsOptions), (req, res) => {
     console.log('req.url : ', req.url);
     res.status(200).send({success: true, contents: 'This is HTTPS page'});
 });
