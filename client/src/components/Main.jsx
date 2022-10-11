@@ -7,29 +7,28 @@ const Main = () => {
   const [ResponseMain, setResponseMain] = useState("");
   const navigate = useNavigate();
 
-  const MoveFirst = (e) => {
+  const MoveHttp = (e) => {
     e.preventDefault();
-    navigate('/first');
+    navigate('/http');
   }
 
-  const MoveSecond = (e) => {
+  const MoveHttps = (e) => {
     e.preventDefault();
-    navigate('/first');
+    navigate('/https');
   }
 
-  const RequestServer = async (e) => {
-    // const url = process.env.REACT_APP_NODE_ENV === 'production' ? `https://${process.env.REACT_APP_AWS_IP}:4000/api/main` : '/api/main';
-    // e.preventDefault();
-    const url = `https://${process.env.REACT_APP_DNS_NAME}:4000/api/main`;
+  const RequestServer = async () => {
+    const url = process.env.REACT_APP_NODE_ENV === 'production' ? `http://${process.env.REACT_APP_DNS_NAME}:4000/api/main` : '/api/main';
+    // const url = `http://${process.env.REACT_APP_DNS_NAME}:4000/api/main`;
     console.log('url : ', url);
-    console.log('https 통신');
+    console.log('HTTP 통신(DNS)');
     try{
       const answer = await axios.post(url);
       setResponseMain(answer.data.contents);
 
     }catch(err){
       console.log(err);
-      setResponseMain("통신에러");
+      setResponseMain("HTTP 통신(DNS) 에러");
     }
   }
 
@@ -37,10 +36,10 @@ const Main = () => {
     <MainContainer>
       <Title>Main Page입니다.</Title>
       <MoveBox>
-        <PageMove onClick={MoveFirst}>First page로 이동</PageMove>
-        <PageMove onClick={MoveSecond}>Second page로 이동</PageMove>
+        <PageMove onClick={MoveHttp}>HTTP(IP) page로 이동</PageMove>
+        <PageMove onClick={MoveHttps}>HTTPS page로 이동</PageMove>
       </MoveBox>
-      <CheckServerButton onClick={RequestServer}>서버 통신 테스트 (Main)</CheckServerButton>
+      <CheckServerButton onClick={RequestServer}>서버 통신 테스트 (HTTP-DNS)</CheckServerButton>
       <ServerResponse>{ResponseMain}</ServerResponse>
       <ResetText onClick={() => setResponseMain("")}>Response 초기화</ResetText>
     </MainContainer>

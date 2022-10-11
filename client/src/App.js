@@ -2,8 +2,8 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import styled from 'styled-components';
 import Main from './components/Main';
-import FirstTest from './components/FirstTest';
-import SecondTest from './components/SecondTest';
+import HttpTest from './components/HttpTest';
+import HttpsTest from './components/HttpsTest';
 
 const App = () => {
   return (
@@ -11,8 +11,8 @@ const App = () => {
       <AppMain>
         <Routes>
           <Route index path='/' element={<Main />} />
-          <Route path='/first' element={<FirstTest />} />
-          <Route path='/second' element={<SecondTest />} />
+          <Route path='/http' element={<HttpTest />} />
+          <Route path='/https' element={<HttpsTest />} />
         </Routes>
       </AppMain>
     </BrowserRouter>

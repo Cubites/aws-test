@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const SecondTest = () => {
-  const [ResponseSecond, setResponseSecond] = useState("");
+const HttpsTest = () => {
+  const [ResponseHttps, setResponseHttps] = useState("");
   const navigate = useNavigate();
 
   const MoveMain = (e) => {
@@ -12,34 +12,36 @@ const SecondTest = () => {
     navigate('/');
   }
 
-  const MoveFirst = (e) => {
+  const MoveHttp = (e) => {
     e.preventDefault();
-    navigate('/first');
+    navigate('/http');
   }
 
   const RequestServer = async () => {
-    // const url = process.env.REACT_APP_NODE_ENV === 'production' ? `http://${process.env.REACT_APP_AWS_IP}:4000/api/second` : '/api/second';
-    const url = `http://${process.env.REACT_APP_AWS_IP}:4000/api/second`;
+    const url = process.env.REACT_APP_NODE_ENV === 'production' ? `https://${process.env.REACT_APP_AWS_IP}:4000/api/second` : '/api/http';
+    // const url = `https://${process.env.REACT_APP_AWS_IP}:4000/api/second`;
     console.log('url : ', url);
+    console.log('https 통신');
     try{
       const answer = await axios.post(url);
-      setResponseSecond(answer.data.contents);
+      console.log('data: ', answer.data.contents);
+      setResponseHttps(answer.data.contents);
     }catch(err){
       console.log(err);
-      setResponseSecond("통신 에러");
+      setResponseHttps("HTTPS 통신 에러");
     }
   }
 
   return (
     <MainContainer>
-      <Title>Second Page입니다.</Title>
+      <Title>HTTPS Page입니다.</Title>
       <MoveBox>
         <PageMove onClick={MoveMain}>Main page로 이동</PageMove>
-        <PageMove onClick={MoveFirst}>First page로 이동</PageMove>
+        <PageMove onClick={MoveHttp}>HTTP page로 이동</PageMove>
       </MoveBox>
-      <CheckServerButton onClick={RequestServer}>서버 통신 테스트 (Second)</CheckServerButton>
-      <ServerResponse>{ResponseSecond}</ServerResponse>
-      <ResetText onClick={() => setResponseSecond("")}>Response 초기화</ResetText>
+      <CheckServerButton onClick={RequestServer}>서버 통신 테스트 (HTTPS)</CheckServerButton>
+      <ServerResponse>{ResponseHttps}</ServerResponse>
+      <ResetText onClick={() => setResponseHttps("")}>Response 초기화</ResetText>
     </MainContainer>
   )
 }
@@ -93,4 +95,4 @@ const ResetText = styled.button`
   height: 5vh;
 `;
 
-export default SecondTest
+export default HttpsTest
