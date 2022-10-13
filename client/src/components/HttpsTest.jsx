@@ -18,13 +18,12 @@ const HttpsTest = () => {
   }
 
   const RequestServer = async () => {
-    const url = process.env.REACT_APP_NODE_ENV === 'production' ? `https://${process.env.REACT_APP_AWS_IP}:4000/api/second` : '/api/http';
-    // const url = `https://${process.env.REACT_APP_AWS_IP}:4000/api/second`;
+    const url = process.env.REACT_APP_NODE_ENV === 'production' ? `https://${process.env.REACT_APP_AWS_IP}:4000/api/https` : '/api/https';
     console.log('url : ', url);
     console.log('https 통신');
     try{
       const answer = await axios.post(url);
-      console.log('data: ', answer.data.contents);
+      console.log('data: ', answer.data.contents, `\n`);
       setResponseHttps(answer.data.contents);
     }catch(err){
       console.log(err);

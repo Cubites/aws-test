@@ -19,11 +19,11 @@ const Main = () => {
 
   const RequestServer = async () => {
     const url = process.env.REACT_APP_NODE_ENV === 'production' ? `http://${process.env.REACT_APP_DNS_NAME}:4000/api/main` : '/api/main';
-    // const url = `http://${process.env.REACT_APP_DNS_NAME}:4000/api/main`;
     console.log('url : ', url);
     console.log('HTTP 통신(DNS)');
     try{
       const answer = await axios.post(url);
+      console.log('data: ', answer.data.contents, `\n`);
       setResponseMain(answer.data.contents);
 
     }catch(err){

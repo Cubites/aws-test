@@ -19,12 +19,11 @@ const HttpTest = () => {
 
   const RequestServer = async () => {
     const url = process.env.REACT_APP_NODE_ENV === 'production' ? `http://${process.env.REACT_APP_AWS_IP}:4000/api/http` : '/api/http';
-    // const url = `http://${process.env.REACT_APP_AWS_IP}:4000/api/http`;
     console.log('url : ', url);
     console.log('HTTP 통신(IP)');
     try{
       const answer = await axios.post(url);
-      console.log('data: ', answer.data.contents);
+      console.log('data: ', answer.data.contents, `\n`);
       setResponseHttp(answer.data.contents);
     }catch(err){
       console.log(err);
