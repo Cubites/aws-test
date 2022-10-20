@@ -7,6 +7,11 @@ const Main = () => {
   const [ResponseMain, setResponseMain] = useState("");
   const navigate = useNavigate();
 
+  const MoveMain = (e) => {
+    e.preventDefault();
+    navigate('/');
+  }
+
   const MoveHttp = (e) => {
     e.preventDefault();
     navigate('/http');
@@ -15,6 +20,11 @@ const Main = () => {
   const MoveHttps = (e) => {
     e.preventDefault();
     navigate('/https');
+  }
+
+  const MoveDb = (e) => {
+    e.preventDefault();
+    navigate('/db');
   }
 
   const RequestServer = async () => {
@@ -36,8 +46,10 @@ const Main = () => {
     <MainContainer>
       <Title>Main Page입니다.</Title>
       <MoveBox>
+        <PageMove onClick={MoveMain} disabled>Main page로 이동</PageMove>
         <PageMove onClick={MoveHttp}>HTTP(IP) page로 이동</PageMove>
         <PageMove onClick={MoveHttps}>HTTPS page로 이동</PageMove>
+        <PageMove onClick={MoveDb}>DB page로 이동</PageMove>
       </MoveBox>
       <CheckServerButton onClick={RequestServer}>서버 통신 테스트 (HTTP-DNS)</CheckServerButton>
       <ServerResponse>{ResponseMain}</ServerResponse>

@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const HttpTest = () => {
-  const [ResponseHttp, setResponseHttp] = useState("");
+const DbTest = () => {
+  const [ResponseDB, setResponseDB] = useState("");
   const navigate = useNavigate();
 
   const MoveMain = (e) => {
@@ -28,31 +28,31 @@ const HttpTest = () => {
   }
 
   const RequestServer = async () => {
-    const url = process.env.REACT_APP_NODE_ENV === 'production' ? `http://${process.env.REACT_APP_AWS_IP}:4000/api/http` : '/api/http';
+    const url = process.env.REACT_APP_NODE_ENV === 'production' ? `http://${process.env.REACT_APP_AWS_IP}:4000/api/db` : '/api/db';
     console.log('url : ', url);
-    console.log('HTTP 통신(IP)');
+    console.log('DB 통신');
     try{
       const answer = await axios.post(url);
       console.log('data: ', answer.data.contents, `\n`);
-      setResponseHttp(answer.data.contents);
+      setResponseDB(answer.data.contents);
     }catch(err){
       console.log(err);
-      setResponseHttp("HTTP 통신(IP) 에러");
+      setResponseDB("DB 통신 에러");
     }
   }
 
   return (
     <MainContainer>
-      <Title>HTTP Page입니다.</Title>
+      <Title>DB Page입니다.</Title>
       <MoveBox>
         <PageMove onClick={MoveMain}>Main page로 이동</PageMove>
-        <PageMove onClick={MoveHttp} disabled>HTTP(IP) page로 이동</PageMove>
+        <PageMove onClick={MoveHttp}>HTTP(IP) page로 이동</PageMove>
         <PageMove onClick={MoveHttps}>HTTPS page로 이동</PageMove>
-        <PageMove onClick={MoveDb}>DB page로 이동</PageMove>
+        <PageMove onClick={MoveDb} disabled>DB page로 이동</PageMove>
       </MoveBox>
-      <CheckServerButton onClick={RequestServer}>서버 통신 테스트 (HTTP-IP)</CheckServerButton>
-      <ServerResponse>{ResponseHttp}</ServerResponse>
-      <ResetText onClick={() => setResponseHttp("")}>Response 초기화</ResetText>
+      <CheckServerButton onClick={RequestServer}>서버 통신 테스트 (HTTPS)</CheckServerButton>
+      <ServerResponse>{ResponseDB}</ServerResponse>
+      <ResetText onClick={() => setResponseDB("")}>Response 초기화</ResetText>
     </MainContainer>
   )
 }
@@ -63,7 +63,7 @@ const MainContainer = styled.div`
   padding-top: 10vh;
   padding-left: 20vw;
   padding-right: 20vw;
-  background-color: #8fa8dd;
+  background-color: #a46cda;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -106,4 +106,4 @@ const ResetText = styled.button`
   height: 5vh;
 `;
 
-export default HttpTest
+export default DbTest

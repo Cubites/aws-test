@@ -17,6 +17,16 @@ const HttpsTest = () => {
     navigate('/http');
   }
 
+  const MoveHttps = (e) => {
+    e.preventDefault();
+    navigate('/https');
+  }
+
+  const MoveDb = (e) => {
+    e.preventDefault();
+    navigate('/db');
+  }
+
   const RequestServer = async () => {
     const url = process.env.REACT_APP_NODE_ENV === 'production' ? `https://${process.env.REACT_APP_AWS_IP}:4000/api/https` : '/api/https';
     console.log('url : ', url);
@@ -36,7 +46,9 @@ const HttpsTest = () => {
       <Title>HTTPS Page입니다.</Title>
       <MoveBox>
         <PageMove onClick={MoveMain}>Main page로 이동</PageMove>
-        <PageMove onClick={MoveHttp}>HTTP page로 이동</PageMove>
+        <PageMove onClick={MoveHttp}>HTTP(IP) page로 이동</PageMove>
+        <PageMove onClick={MoveHttps} disabled>HTTPS page로 이동</PageMove>
+        <PageMove onClick={MoveDb}>DB page로 이동</PageMove>
       </MoveBox>
       <CheckServerButton onClick={RequestServer}>서버 통신 테스트 (HTTPS)</CheckServerButton>
       <ServerResponse>{ResponseHttps}</ServerResponse>

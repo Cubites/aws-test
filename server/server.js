@@ -28,6 +28,8 @@ let corsOptions = {
     ]
 }
 
+const bookSearch = require('./routers/bookSearch');
+
 app.post('/api/main', cors(corsOptions), (req, res) => {
     console.log('/api/main 신호 확인');
     console.log('req.secure : ', req.secure);
@@ -46,6 +48,8 @@ app.post('/api/https', cors(corsOptions), (req, res) => {
     console.log('req.url : ', req.url);
     res.status(200).send({success: true, contents: 'This is HTTPS page'});
 });
+
+app.post('/api/db', cors(corsOptions), bookSearch);
 
 app.listen(app.get('port'), () => {
     console.log(`http에서 서버가 실행되었습니다.`);

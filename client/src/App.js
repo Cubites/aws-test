@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Main from './components/Main';
 import HttpTest from './components/HttpTest';
 import HttpsTest from './components/HttpsTest';
+import DbTest from './components/DbTest';
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
           <Route index path='/' element={<Main />} />
           <Route path='/http' element={<HttpTest />} />
           <Route path='/https' element={<HttpsTest />} />
+          <Route path='/db' element={<DbTest />} />
         </Routes>
       </AppMain>
     </BrowserRouter>
