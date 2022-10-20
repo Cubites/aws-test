@@ -24,7 +24,7 @@ let corsOptions = {
         'http://54.180.18.215',
         'http://commenter.link',
         'https://54.180.18.215',
-        'https://commenter.link'
+        'https://commenter.link/*'
     ]
 }
 
