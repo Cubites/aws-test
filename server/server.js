@@ -23,8 +23,14 @@ let corsOptions = {
     origin: [
         'http://54.180.18.215',
         'http://commenter.link',
+        'http://commenter.link/http',
+        'http://commenter.link/https',
+        'http://commenter.link/db', 
         'https://54.180.18.215',
-        'https://commenter.link/*'
+        'https://commenter.link',
+        'https://commenter.link/http',
+        'https://commenter.link/https',
+        'https://commenter.link/db',        
     ]
 }
 
