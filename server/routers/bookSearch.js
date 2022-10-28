@@ -2,7 +2,7 @@ const router = require('express').Router();
 
 const ConnectionPool = require('../modules/ConnectionPool');
 
-router.post('/book/search', async (req, res, next) => {
+router.post('/api/db', async (req, res, next) => {
     console.log('2-1. 책 검색');
     try{
         const conn = await ConnectionPool.getConnection();
